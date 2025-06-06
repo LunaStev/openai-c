@@ -1,3 +1,9 @@
+<p align="right">
+  <a href="https://ko-fi.com/lunasev" target="_blank">
+    <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Ko-fi" />
+  </a>
+</p>
+
 # OpenAI C
 
 **OpenAI C** is an unofficial C client library for the OpenAI API.
