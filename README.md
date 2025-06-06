@@ -1,8 +1,4 @@
-<p align="right">
-  <a href="https://ko-fi.com/lunasev" target="_blank">
-    <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Ko-fi" />
-  </a>
-</p>
+<img src=".github/image/OpenAI-logos-2025/SVGs/OpenAI-white-monoblossom.svg" height="32" align="right" alt="OpenAI logo"/>
 
 # OpenAI C
 
@@ -13,6 +9,14 @@ It provides a lightweight wrapper for calling ChatGPT (e.g. GPT-3.5 or GPT-4) us
 > If you prefer Make over CMake, a simple Makefile is also provided for manual builds and testing. However, CMake is the recommended build method.
 
 ---
+
+## Support
+
+If you find this project helpful, consider supporting it:
+
+<a href="https://ko-fi.com/yourusername" target="_blank">
+  <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support me on Ko-fi" />
+</a>
 
 ## Features
 
