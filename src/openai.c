@@ -124,3 +124,56 @@ char* openai_chat_with_model(const char* prompt, const char* model) {
 char* openai_chat(const char* prompt) {
     return openai_chat_with_model(prompt, "gpt-3.5-turbo");
 }
+
+char* openai_generate_image(const char* prompt, int n, const char* size) {
+    if (!api_key || !prompt || !size || n <= 0 || n > 10) return NULL;
+
+    CURL* curl = curl_easy_init();
+    if (!curl) return NULL;
+
+    struct memory chunk = {malloc(1), 0};
+    struct curl_slist* headers = NULL;
+
+    headers = curl_slist_append(headers, "Content-Type: application/json");
+
+    char auth_header[512];
+    snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", api_key);
+    headers = curl_slist_append(headers, auth_header);
+
+    char json[2048];
+    snprintf(json, sizeof(json),
+        "{ \"prompt\": \"%s\", \"n\": %d, \"size\": \"%s\" }", prompt, n, size);
+
+    curl_easy_setopt(curl, CURLOPT_URL, "https://api.openai.com/v1/images/generations");
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, json);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*)&chunk);
+
+    CURLcode res = curl_easy_perform(curl);
+    curl_easy_cleanup(curl);
+    curl_slist_free_all(headers);
+
+    if (res != CURLE_OK) {
+        free(chunk.response);
+        return NULL;
+    }
+
+    cJSON* root = cJSON_Parse(chunk.response);
+    if (!root) {
+        free(chunk.response);
+        return NULL;
+    }
+
+    cJSON* data = cJSON_GetObjectItem(root, "data");
+    if (!cJSON_IsArray(data)) {
+        cJSON_Delete(root);
+        free(chunk.response);
+        return NULL;
+    }
+
+    char* result = cJSON_PrintUnformatted(data);
+    cJSON_Delete(root);
+    free(chunk.response);
+    return result;
+}
