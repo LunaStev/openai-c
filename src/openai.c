@@ -1,5 +1,5 @@
 /*
-* MIT License
+ * MIT License
  *
  * Copyright (c) 2025 LunaStev
  *
@@ -76,10 +76,16 @@ char* openai_chat_with_model(const char* prompt, const char* model) {
     char* escaped_prompt = curl_easy_escape(curl, prompt, 0);
     char* escaped_model = curl_easy_escape(curl, model, 0);
 
-    char json[4096];
-    snprintf(json, sizeof(json),
-        "{ \"model\": \"%s\", \"messages\": [{\"role\": \"user\", \"content\": \"%s\"}] }",
-        escaped_model, escaped_prompt);
+    cJSON* rt = cJSON_CreateObject();
+    cJSON_AddStringToObject(rt, "model", model);
+
+    cJSON* messages = cJSON_AddArrayToObject(rt, "messages");
+    cJSON* msg = cJSON_CreateObject();
+    cJSON_AddStringToObject(msg, "role", "user");
+    cJSON_AddStringToObject(msg, "content", prompt);
+    cJSON_AddItemToArray(messages, msg);
+
+    char* json = cJSON_PrintUnformatted(rt);
 
     curl_easy_setopt(curl, CURLOPT_URL, "https://api.openai.com/v1/chat/completions");
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
