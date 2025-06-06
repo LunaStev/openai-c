@@ -10,7 +10,7 @@ It provides a lightweight wrapper for calling ChatGPT (e.g. GPT-3.5 or GPT-4) us
 
 ## Features
 
-- Lightweight C library for OpenAI Chat API
+- Lightweight C library for OpenAI API
 - Uses standard C with no runtime dependencies beyond `libcurl` and `cJSON`
 - Suitable for embedded or low-level systems
 - Optional example CLI program (`openai_example`)
