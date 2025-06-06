@@ -1,6 +1,6 @@
 # OpenAI C
 
-**OpenAI C** is an unofficial C client library for the OpenAI Chat API.
+**OpenAI C** is an unofficial C client library for the OpenAI API.
 
 It provides a lightweight wrapper for calling ChatGPT (e.g. GPT-3.5 or GPT-4) using `libcurl` and `cJSON`.
 
@@ -59,7 +59,9 @@ You can build and run the optional example program:
 ./openai_example
 ```
 
-Inside `examples/chat.c`:
+### Chat
+
+Inside `examples/01_chat.c`:
 
 ```c
 #include "openai.h"
@@ -77,6 +79,46 @@ int main() {
     return 0;
 }
 ```
+
+Output:
+
+```text
+Response: Hello! I am an AI digital assistant here to help you with any questions or tasks you may have. How can I assist you today?
+```
+
+### Image
+
+Inside `examples/02_image.c`:
+
+```c
+#include "openai.h"
+
+int main() {
+    const char* api_key = "sk-...";
+    const char* prompt = "Draw me a cute cat.";
+
+    if (strlen(api_key) == 0) {
+        fprintf(stderr, "ERROR: OpenAI API key is missing.\n");
+        return 1;
+    }
+
+    openai_init(api_key);
+
+    char* urls = openai_generate_image(prompt, 2, "512x512");
+    if (urls) {
+        printf("Image URLs: %s\n", urls);
+        free(urls);
+    } else {
+        printf("Failed to generate image\n");
+    }
+}
+```
+
+Output:
+
+![02_image1.png](.github/image/02_image1.png)
+
+![02_image2.png](.github/image/02_image2.png)
 
 ---
 
