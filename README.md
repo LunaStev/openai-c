@@ -37,6 +37,13 @@ sudo apt install build-essential cmake libcurl4-openssl-dev libcjson-dev
 ## Build and Install
 
 ```bash
+git clone https://github.com/LunaStev/openai-c.git
+./scripts/install.sh
+```
+
+or:
+
+```bash
 git clone https://github.com/yourname/openai-c.git
 cd openai-c
 mkdir build
