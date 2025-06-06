@@ -73,14 +73,16 @@ char* openai_chat_with_model(const char* prompt, const char* model);
 char* openai_chat(const char* prompt);
 
 /**
- * @brief Generates an image from a text prompt using DALL·E.
+ * @brief Generates images from a text prompt using DALL·E.
  *
- * This function sends a prompt to the OpenAI image generation endpoint and returns the image URL.
+ * This function sends a prompt to the OpenAI image generation endpoint and returns the image URLs.
  *
  * @param prompt The description of the image to generate.
- * @return The image URL string (must be freed by the caller), or NULL on error.
+ * @param n Number of images to generate (1–10).
+ * @param size The size of the image (e.g., "256x256", "512x512", "1024x1024").
+ * @return The image URL list in a JSON array string (must be freed by the caller), or NULL on error.
  */
-char* openai_generate_image(const char* prompt);
+char* openai_generate_image(const char* prompt, int n, const char* size);
 
 #ifdef __cplusplus
 }
