@@ -146,9 +146,12 @@ char* openai_generate_image(const char* prompt, int n, const char* size) {
     snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", api_key);
     headers = curl_slist_append(headers, auth_header);
 
-    char json[2048];
-    snprintf(json, sizeof(json),
-        "{ \"prompt\": \"%s\", \"n\": %d, \"size\": \"%s\" }", prompt, n, size);
+    cJSON* root = cJSON_CreateObject();
+    cJSON_AddStringToObject(root, "prompt", prompt);
+    cJSON_AddNumberToObject(root, "n", n);
+    cJSON_AddStringToObject(root, "size", size);
+
+    char* json = cJSON_PrintUnformatted(root);
 
     curl_easy_setopt(curl, CURLOPT_URL, "https://api.openai.com/v1/images/generations");
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
