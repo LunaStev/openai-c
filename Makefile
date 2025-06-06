@@ -5,7 +5,8 @@ LDFLAGS = -lcurl -lcjson
 SRC = src/openai.c
 OBJ = build/openai.o
 LIB = build/libopenai.a
-EXAMPLE = examples/chat.c
+EXAMPLES = $(wildcard examples/*.c)
+TARGETS = $(patsubst examples/%.c, build/%, $(EXAMPLES))
 TARGET = openai_example
 
 PREFIX ?= /usr/local
@@ -21,8 +22,10 @@ $(OBJ): $(SRC)
 	mkdir -p build
 	$(CC) -c $(SRC) -o $(OBJ) $(CFLAGS)
 
-test: build
-	$(CC) -o $(TARGET) $(EXAMPLE) -Iinclude -Lbuild -lopenai $(LDFLAGS)
+test: build $(TARGETS)
+
+build/%: examples/%.c build
+	$(CC) -o $@ $< -Iinclude -Lbuild -lopenai $(LDFLAGS)
 
 install: build
 	mkdir -p $(PREFIX)/lib
