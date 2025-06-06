@@ -1,0 +1,32 @@
+# Build artifacts
+build/
+*.o
+*.a
+*.so
+*.exe
+*.out
+*.log
+
+# CMake files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+build/Makefile
+
+# Executables
+openai_example
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Vim
+*.swp
+*.swo
+
+# Backup files
+*~
+
+# IDEs
+.vscode/
+.idea/
