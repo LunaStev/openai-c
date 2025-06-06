@@ -15,7 +15,7 @@ It provides a lightweight wrapper for calling ChatGPT (e.g. GPT-3.5 or GPT-4) us
 - Suitable for embedded or low-level systems
 - Optional example CLI program (`openai_example`)
 - Easy installation with CMake
-- Licensed under MPL-2.0
+- Licensed under MIT
 
 ---
 
@@ -82,4 +82,4 @@ int main() {
 
 ## License
 
-This project is licensed under the [Mozilla Public License 2.0](https://www.mozilla.org/MPL/2.0/).
+This project is licensed under the [MIT](https://mit-license.org/).
