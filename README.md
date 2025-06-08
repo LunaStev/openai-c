@@ -154,8 +154,10 @@ int main() {
     openai_init(api_key);
 
     char* result = openai_transcribe_audio(audio_file);
+    char* result_trans = openai_translate_audio(audio_file);
     if (result) {
         printf("Transcription result:\n%s\n", result);
+        printf("translation result:\n%s\n", result_trans);
         free(result);
     } else {
         printf("Failed to transcribe audio.\n");
@@ -167,7 +169,9 @@ Output:
 
 ```text
 Transcription result:
-The sun rises in the east and sets in the west. This simple fact has been observed by humans for thousands of years.
+Estoy presente ahora. Me amo. Estoy libre de mi ira. Estoy libre de mi tristedad. El amor es mi experiencia.
+translation result:
+I am present now. I love myself. I am free from my anger. I am free from my sadness. Love is my experience.
 ```
 
 ---
