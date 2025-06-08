@@ -10,8 +10,6 @@
 
 It provides a lightweight wrapper for calling ChatGPT (e.g. GPT-3.5 or GPT-4) using `libcurl` and `cJSON`.
 
-> If you prefer Make over CMake, a simple Makefile is also provided for manual builds and testing. However, CMake is the recommended build method.
-
 ---
 
 ## Features
