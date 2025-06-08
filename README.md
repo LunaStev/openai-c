@@ -148,7 +148,7 @@ Output:
 
 int main() {
     const char* api_key = "sk-...";
-    const char* audio_file = "alloy.wav"; // https://cdn.openai.com/API/docs/audio/alloy.wav
+    const char* audio_file = "alloy.wav";
 
     if (strlen(api_key) == 0) {
         fprintf(stderr, "ERROR: OpenAI API key is missing.\n");
