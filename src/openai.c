@@ -245,3 +245,62 @@ char* openai_transcribe_audio(const char* filepath) {
     free(chunk.response);
     return result;
 }
+
+char* openai_translate_audio(const char* filepath) {
+    if (!api_key || !filepath) return NULL;
+
+    CURL* curl = curl_easy_init();
+    if (!curl) return NULL;
+
+    struct memory chunk = {malloc(1), 0};
+    struct curl_slist* headers = NULL;
+
+    char auth_header[512];
+    snprintf(auth_header, sizeof(auth_header), "Authorization: Bearer %s", api_key);
+    headers = curl_slist_append(headers, auth_header);
+
+    curl_mime* mime = curl_mime_init(curl);
+    curl_mimepart* part;
+
+    part = curl_mime_addpart(mime);
+    curl_mime_name(part, "file");
+    curl_mime_filedata(part, filepath);
+
+    part = curl_mime_addpart(mime);
+    curl_mime_name(part, "model");
+    curl_mime_data(part, "whisper-1", CURL_ZERO_TERMINATED);
+
+    curl_easy_setopt(curl, CURLOPT_URL, "https://api.openai.com/v1/audio/translations");
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+    curl_easy_setopt(curl, CURLOPT_MIMEPOST, mime);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void*)&chunk);
+
+    CURLcode res = curl_easy_perform(curl);
+    curl_easy_cleanup(curl);
+    curl_mime_free(mime);
+    curl_slist_free_all(headers);
+
+    if (res != CURLE_OK) {
+        free(chunk.response);
+        return NULL;
+    }
+
+    cJSON* root = cJSON_Parse(chunk.response);
+    if (!root) {
+        free(chunk.response);
+        return NULL;
+    }
+
+    cJSON* text = cJSON_GetObjectItem(root, "text");
+    if (!cJSON_IsString(text)) {
+        cJSON_Delete(root);
+        free(chunk.response);
+        return NULL;
+    }
+
+    char* result = strdup(text->valuestring);
+    cJSON_Delete(root);
+    free(chunk.response);
+    return result;
+}
