@@ -6,8 +6,6 @@
 
 It provides a lightweight wrapper for calling ChatGPT (e.g. GPT-3.5 or GPT-4) using `libcurl` and `cJSON`.
 
-> If you prefer Make over CMake, a simple Makefile is also provided for manual builds and testing. However, CMake is the recommended build method.
-
 ---
 
 ## Support
@@ -54,7 +52,7 @@ git clone https://github.com/LunaStev/openai-c.git
 or:
 
 ```bash
-git clone https://github.com/yourname/openai-c.git
+git clone https://github.com/LunaStev/openai-c.git
 cd openai-c
 mkdir build
 cd build
@@ -63,7 +61,8 @@ make
 sudo make install
 ```
 
-- `libopenai.a` → installed to `/usr/local/lib`
+- `libopenai.a` → installed to `/usr/local/lib/static`
+- `libopenai.so` → installed to `/usr/local/lib/shared`
 - `openai.h` → installed to `/usr/local/include`
 
 ---
@@ -136,6 +135,48 @@ Output:
 ![02_image1.png](.github/image/02_image1.png)
 
 ![02_image2.png](.github/image/02_image2.png)
+
+
+### Audio
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "openai.h"
+
+int main() {
+    const char* api_key = "sk-...";
+    const char* audio_file = "alloy.wav"; // https://cdn.openai.com/API/docs/audio/alloy.wav
+
+    if (strlen(api_key) == 0) {
+        fprintf(stderr, "ERROR: OpenAI API key is missing.\n");
+        return 1;
+    }
+
+    openai_init(api_key);
+
+    char* result = openai_transcribe_audio(audio_file);
+    char* result_trans = openai_translate_audio(audio_file);
+    if (result) {
+        printf("Transcription result:\n%s\n", result);
+        printf("translation result:\n%s\n", result_trans);
+        free(result);
+    } else {
+        printf("Failed to transcribe audio.\n");
+    }
+}
+```
+
+Output:
+
+```text
+Transcription result:
+Estoy presente ahora. Me amo. Estoy libre de mi ira. Estoy libre de mi tristedad. El amor es mi experiencia.
+translation result:
+I am present now. I love myself. I am free from my anger. I am free from my sadness. Love is my experience.
+```
 
 ---
 

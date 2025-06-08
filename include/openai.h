@@ -84,6 +84,28 @@ char* openai_chat(const char* prompt);
  */
 char* openai_generate_image(const char* prompt, int n, const char* size);
 
+/**
+ * @brief Transcribes an audio file using OpenAI's Whisper model.
+ *
+ * This function sends an audio file to the OpenAI transcription API
+ * and returns the transcribed text.
+ *
+ * @param filepath The path to the audio file to be transcribed (e.g., .mp3, .wav).
+ * @return The transcribed text as a string (must be freed by the caller), or NULL on error.
+ */
+char* openai_transcribe_audio(const char* filepath);
+
+/**
+ * @brief Translates non-English audio to English using OpenAI's Whisper model.
+ *
+ * This function sends a non-English audio file to the OpenAI translation API
+ * and returns the translated English text.
+ *
+ * @param filepath The path to the audio file to be translated (e.g., .mp3, .wav).
+ * @return The translated English text as a string (must be freed by the caller), or NULL on error.
+ */
+char* openai_translate_audio(const char* filepath);
+
 #ifdef __cplusplus
 }
 #endif
