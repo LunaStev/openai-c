@@ -12,7 +12,7 @@ It provides a lightweight wrapper for calling ChatGPT (e.g. GPT-3.5 or GPT-4) us
 
 If you find this project helpful, consider supporting it:
 
-<a href="https://ko-fi.com/yourusername" target="_blank">
+<a href="https://ko-fi.com/lunasev" target="_blank">
   <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support me on Ko-fi" />
 </a>
 
