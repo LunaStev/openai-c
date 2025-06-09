@@ -4,7 +4,13 @@ project(openai-c C)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
-add_library(openai STATIC src/openai.c)
+file(GLOB SOURCES
+        "src/core.c"
+        "src/chat.c"
+        "src/image.c"
+        "src/audio.c"
+)
+add_library(openai STATIC ${SOURCES})
 target_include_directories(openai PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(openai PUBLIC curl cjson)
 
