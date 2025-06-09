@@ -16,8 +16,10 @@ int main() {
     openai_init(api_key);
 
     char* result = openai_transcribe_audio(audio_file);
+    char* result_trans = openai_translate_audio(audio_file);
     if (result) {
         printf("Transcription result:\n%s\n", result);
+        printf("translation result:\n%s\n", result_trans);
         free(result);
     } else {
         printf("Failed to transcribe audio.\n");
