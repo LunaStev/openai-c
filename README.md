@@ -59,7 +59,8 @@ make
 sudo make install
 ```
 
-- `libopenai.a` → installed to `/usr/local/lib`
+- `libopenai.a` → installed to `/usr/local/lib/`
+- `openai.h` → installed to `/usr/local/include`
 
 ---
 
