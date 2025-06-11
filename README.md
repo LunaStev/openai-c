@@ -14,10 +14,6 @@ If you find this project helpful, consider supporting it:
 
 [![Sponsor LunaStev](https://img.shields.io/badge/Sponsor-LunaStev-ff69b4?logo=GitHub%20Sponsors&style=for-the-badge)](https://github.com/sponsors/LunaStev)
 
-<a href="https://ko-fi.com/lunasev" target="_blank">
-  <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support me on Ko-fi" />
-</a>
-
 ## Features
 
 - Lightweight C library for OpenAI API
@@ -65,6 +61,12 @@ sudo make install
 
 - `libopenai.a` → installed to `/usr/local/lib/`
 - `openai.h` → installed to `/usr/local/include`
+
+---
+
+## Contributing
+
+Contributing is [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ---
 
