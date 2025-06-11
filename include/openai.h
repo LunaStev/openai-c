@@ -106,6 +106,32 @@ char* openai_transcribe_audio(const char* filepath);
  */
 char* openai_translate_audio(const char* filepath);
 
+/**
+ * @brief Creates a JSON string for generating text embeddings using OpenAI's embedding API.
+ *
+ * This function constructs a JSON-formatted string containing the input text and model name,
+ * which is suitable for use in a request to OpenAI's embedding API.
+ *
+ * @param input The input text for which the embedding is to be generated.
+ * @param model The name of the embedding model to be used (e.g., "text-embedding-ada-002").
+ * @return A dynamically allocated JSON string (must be freed by the caller), or NULL on error.
+ */
+char* openai_create_embedding_json(const char* input, const char* model);
+
+/**
+ * @brief Generates an embedding vector for the given input text using OpenAI's embedding API.
+ *
+ * This function sends the input text and model to the OpenAI embedding API,
+ * receives the resulting embedding vector, and returns it as a dynamically allocated float array.
+ *
+ * @param input The input text for which the embedding is to be generated.
+ * @param model The name of the embedding model to use (e.g., "text-embedding-ada-002").
+ * @param length A pointer to a size_t variable that will receive the length of the returned array.
+ * @return A dynamically allocated array of floats representing the embedding (must be freed by the caller),
+ *         or NULL on error. The length of the array is stored in *length.
+ */
+float* openai_create_embedding_array(const char* input, const char* model, size_t* length);
+
 #ifdef __cplusplus
 }
 #endif
