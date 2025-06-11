@@ -9,6 +9,7 @@ file(GLOB SOURCES
         "src/chat.c"
         "src/image.c"
         "src/audio.c"
+        "src/embeddings.c"
 )
 add_library(openai STATIC ${SOURCES})
 target_include_directories(openai PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
