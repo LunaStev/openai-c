@@ -67,6 +67,12 @@ sudo make install
 
 ---
 
+## Contributing
+
+Contributing is [CONTRIBUTING.md](CONTRIBUTING.md)
+
+---
+
 ## Example Usage
 
 ### Chat
