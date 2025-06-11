@@ -12,9 +12,7 @@ It provides a lightweight wrapper for calling ChatGPT (e.g. GPT-3.5 or GPT-4) us
 
 If you find this project helpful, consider supporting it:
 
-<a href="https://ko-fi.com/yourusername" target="_blank">
-  <img src="https://ko-fi.com/img/githubbutton_sm.svg" alt="Support me on Ko-fi" />
-</a>
+[![Sponsor LunaStev](https://img.shields.io/badge/Sponsor-LunaStev-ff69b4?logo=GitHub%20Sponsors&style=for-the-badge)](https://github.com/sponsors/LunaStev)
 
 ## Features
 
@@ -61,9 +59,7 @@ make
 sudo make install
 ```
 
-- `libopenai.a` → installed to `/usr/local/lib/static`
-- `libopenai.so` → installed to `/usr/local/lib/shared`
-- `openai.h` → installed to `/usr/local/include`
+- `libopenai.a` → installed to `/usr/local/lib`
 
 ---
 
