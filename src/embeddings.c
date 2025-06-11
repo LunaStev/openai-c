@@ -87,7 +87,7 @@ float* openai_create_embedding_array(const char* input, const char* model, size_
 
     for (size_t i = 0; i < count; i++) {
         cJSON* val = cJSON_GetArrayItem(embedding, i);
-        result[i] = (float)(val->valuedouble); // float 변환
+        result[i] = (float)(val->valuedouble);
     }
 
     *length = count;
